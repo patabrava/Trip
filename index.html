@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kolumbien Reiseplan — 3,5 Wochen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ─── Sticky Navigation ──────────────────────────────────── -->
+  <nav class="sticky-nav" aria-label="Reiseziele">
+    <div class="nav-inner">
+      <button class="nav-pill" data-target="bogota"><span class="pill-num">01</span> Bogotá</button>
+      <button class="nav-pill" data-target="villa-de-leyva"><span class="pill-num">02</span> Villa de Leyva</button>
+      <button class="nav-pill" data-target="medellin"><span class="pill-num">03</span> Medellín</button>
+      <button class="nav-pill" data-target="barichara"><span class="pill-num">04</span> Barichara</button>
+      <button class="nav-pill" data-target="cartagena"><span class="pill-num">05</span> Cartagena</button>
+      <button class="nav-pill" data-target="cali"><span class="pill-num">06</span> Cali</button>
+      <button class="nav-pill" data-target="salento"><span class="pill-num">07</span> Salento</button>
+    </div>
+  </nav>
+
+  <!-- ─── Hero ───────────────────────────────────────────────── -->
+  <section class="hero">
+    <p class="hero-kicker">Reiseplan Südamerika &nbsp;·&nbsp; Mary &amp; Erich</p>
+    <p class="hero-eyebrow">Kolumbien</p>
+    <h1 class="hero-title">3,5 Wochen</h1>
+    <p class="hero-subtitle">24 Nächte &nbsp;·&nbsp; 7 Städte</p>
+
+    <div class="hero-stats">
+      <!-- Nights icon -->
+      <span class="stat-pill">
+        <svg class="icon" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M11.5 8.5A5 5 0 0 1 4.5 2a5 5 0 1 0 7 6.5Z"/>
+        </svg>
+        24 Nächte
+      </span>
+      <!-- Map pin icon -->
+      <span class="stat-pill">
+        <svg class="icon" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 1.5a3.5 3.5 0 0 1 3.5 3.5C10.5 7.625 7 12 7 12S3.5 7.625 3.5 5A3.5 3.5 0 0 1 7 1.5Z"/>
+          <circle cx="7" cy="5" r="1.25"/>
+        </svg>
+        7 Städte
+      </span>
+      <!-- Car icon -->
+      <span class="stat-pill">
+        <svg class="icon" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4.5 4.5 3.5 7h7l-1-2.5H4.5Z"/>
+          <rect x="1.5" y="7" width="11" height="2.5" rx="1"/>
+          <line x1="3" y1="9.5" x2="3" y2="11"/>
+          <line x1="11" y1="9.5" x2="11" y2="11"/>
+        </svg>
+        SUV Mietwagen
+      </span>
+      <!-- Plane icon -->
+      <span class="stat-pill">
+        <svg class="icon" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1.5 8.5 4 7l2 2.5 1.5-.5L6 7l4.5-3 1 1.5-5 2.5 1 3.5-1.5.5-1.5-3.5-3 1Z"/>
+        </svg>
+        Avianca Flüge
+      </span>
+    </div>
+
+    <!--
+      ─── Real Colombia Map SVG ─────────────────────────────────
+      Coordinate system: viewBox "0 0 300 380"
+      x = (lon + 79) / 12 * 300  (79°W → x=0, 67°W → x=300)
+      y = (13 - lat) / 17 * 380  (13°N → y=0, 4°S → y=380)
+
+      City positions (geographically accurate):
+        Bogotá        4.71°N, 74.07°W → (123, 185)
+        Villa de Leyva 5.64°N, 73.52°W → (137, 165)
+        Medellín      6.24°N, 75.57°W → ( 86, 151)
+        Barichara     6.63°N, 73.22°W → (145, 142)
+        Cartagena    10.39°N, 75.51°W → ( 87,  59)
+        Cali          3.43°N, 76.52°W → ( 62, 214)
+        Salento       4.64°N, 75.57°W → ( 86, 187)
+    -->
+    <div class="hero-map" aria-hidden="true">
+      <svg viewBox="0 0 300 380" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="map-shadow" x="-10%" y="-10%" width="120%" height="120%">
+            <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="rgba(26,22,18,0.1)"/>
+          </filter>
+        </defs>
+
+        <!-- ── Colombia outline (50-point accurate path) ──────── -->
+        <path class="map-country" filter="url(#map-shadow)" d="
+          M 40,123
+          L 43,101
+          L 51,109
+          L 53,113
+          L 59,105
+          L 63,90
+          L 70,79
+          L 80,68
+          L 87,59
+          L 100,48
+          L 105,45
+          L 121,40
+          L 137,38
+          L 142,28
+          L 148,22
+          L 163,17
+          L 183,13
+          L 170,24
+          L 165,31
+          L 163,42
+          L 158,64
+          L 150,75
+          L 163,89
+          L 170,100
+          L 175,112
+          L 200,123
+          L 213,134
+          L 263,145
+          L 288,157
+          L 288,179
+          L 288,201
+          L 300,224
+          L 300,246
+          L 250,268
+          L 225,291
+          L 225,313
+          L 175,335
+          L 138,335
+          L 100,313
+          L 88,302
+          L 75,291
+          L 63,284
+          L 38,279
+          L 13,268
+          L 5,259
+          L 25,246
+          L 30,236
+          L 38,224
+          L 41,212
+          L 40,201
+          L 40,179
+          L 35,168
+          L 40,157
+          L 40,145
+          L 33,134
+          Z
+        "/>
+
+        <!-- ── Travel route line ──────────────────────────────── -->
+        <!-- Bogotá → V.de Leyva → Bogotá → Medellín → Barichara → Cartagena → Cali → Salento -->
+        <path class="map-route" d="
+          M 123,185
+          L 137,165
+          L 123,185
+          L 86,151
+          L 145,142
+          L 87,59
+          L 62,214
+          L 86,187
+        "/>
+
+        <!-- ── City dots (revealed by JS after route animation) ─ -->
+        <!-- 1. Bogotá -->
+        <circle class="map-city-dot" data-seq="0" cx="123" cy="185" r="5" stroke="var(--bogota)"/>
+        <text class="map-city-label" data-seq="0" x="133" y="183" text-anchor="start">Bogotá</text>
+
+        <!-- 2. Villa de Leyva -->
+        <circle class="map-city-dot" data-seq="1" cx="137" cy="165" r="5" stroke="var(--leyva)"/>
+        <text class="map-city-label" data-seq="1" x="147" y="163" text-anchor="start">V. de Leyva</text>
+
+        <!-- 3. Medellín -->
+        <circle class="map-city-dot" data-seq="2" cx="86" cy="151" r="5" stroke="var(--medellin)"/>
+        <text class="map-city-label" data-seq="2" x="76" y="148" text-anchor="end">Medellín</text>
+
+        <!-- 4. Barichara -->
+        <circle class="map-city-dot" data-seq="3" cx="145" cy="142" r="5" stroke="var(--barichara)"/>
+        <text class="map-city-label" data-seq="3" x="155" y="140" text-anchor="start">Barichara</text>
+
+        <!-- 5. Cartagena -->
+        <circle class="map-city-dot" data-seq="4" cx="87" cy="59" r="5" stroke="var(--cartagena)"/>
+        <text class="map-city-label" data-seq="4" x="97" y="57" text-anchor="start">Cartagena</text>
+
+        <!-- 6. Cali -->
+        <circle class="map-city-dot" data-seq="5" cx="62" cy="214" r="5" stroke="var(--cali)"/>
+        <text class="map-city-label" data-seq="5" x="52" y="212" text-anchor="end">Cali</text>
+
+        <!-- 7. Salento -->
+        <circle class="map-city-dot" data-seq="6" cx="86" cy="187" r="5" stroke="var(--salento)"/>
+        <text class="map-city-label" data-seq="6" x="76" y="200" text-anchor="end">Salento</text>
+      </svg>
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true">
+      <span>Scrollen</span>
+      <svg class="scroll-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M8 3v10M3 9l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ─── Route Overview ─────────────────────────────────────── -->
+  <section class="route-overview">
+    <span class="section-label reveal">Die Reiseroute</span>
+    <h2 class="reveal" data-delay="1">24 Nächte durch Kolumbien</h2>
+    <p class="route-desc reveal" data-delay="2">
+      Von der Hauptstadt über koloniale Bergdörfer, moderne Großstädte und karibische Küste
+      bis in die Kaffeeregion — eine unvergessliche Rundreise.
+    </p>
+
+    <div class="route-stops reveal" data-delay="3">
+      <div class="route-stop">
+        <div class="stop-node">
+          <div class="stop-dot" style="background: var(--bogota);" data-target="bogota">01</div>
+          <div class="stop-label">Bogotá</div>
+          <div class="stop-nights">2 Nächte</div>
+        </div>
+      </div>
+      <div class="route-connector"></div>
+
+      <div class="route-stop">
+        <div class="stop-node">
+          <div class="stop-dot" style="background: var(--leyva);" data-target="villa-de-leyva">02</div>
+          <div class="stop-label">Villa de Leyva</div>
+          <div class="stop-nights">3 Nächte</div>
+        </div>
+      </div>
+      <div class="route-connector"></div>
+
+      <div class="route-stop">
+        <div class="stop-node">
+          <div class="stop-dot" style="background: var(--medellin);" data-target="medellin">03</div>
+          <div class="stop-label">Medellín</div>
+          <div class="stop-nights">3 Nächte</div>
+        </div>
+      </div>
+      <div class="route-connector"></div>
+
+      <div class="route-stop">
+        <div class="stop-node">
+          <div class="stop-dot" style="background: var(--barichara);" data-target="barichara">04</div>
+          <div class="stop-label">Barichara</div>
+          <div class="stop-nights">3 Nächte</div>
+        </div>
+      </div>
+      <div class="route-connector"></div>
+
+      <div class="route-stop">
+        <div class="stop-node">
+          <div class="stop-dot" style="background: var(--cartagena);" data-target="cartagena">05</div>
+          <div class="stop-label">Cartagena</div>
+          <div class="stop-nights">6 Nächte</div>
+        </div>
+      </div>
+      <div class="route-connector"></div>
+
+      <div class="route-stop">
+        <div class="stop-node">
+          <div class="stop-dot" style="background: var(--cali);" data-target="cali">06</div>
+          <div class="stop-label">Cali</div>
+          <div class="stop-nights">3 Nächte</div>
+        </div>
+      </div>
+      <div class="route-connector"></div>
+
+      <div class="route-stop">
+        <div class="stop-node">
+          <div class="stop-dot" style="background: var(--salento);" data-target="salento">07</div>
+          <div class="stop-label">Salento &amp; Filandia</div>
+          <div class="stop-nights">4 Nächte</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- ─── 1. Bogotá ──────────────────────────────────────────── -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="destination" id="bogota" data-id="bogota">
+    <div class="dest-inner">
+      <div class="dest-header reveal">
+        <div class="dest-num">01</div>
+        <div class="dest-title-group">
+          <h2 class="dest-name">
+            <span class="color-bar" style="background: var(--bogota);"></span>
+            Bogotá
+          </h2>
+          <div class="dest-nights-badge">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M6 1a5 5 0 1 0 0 10A5 5 0 0 0 6 1Zm0 2v3l2 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            2 Nächte
+          </div>
+        </div>
+      </div>
+
+      <div class="dest-grid">
+        <div class="dest-col reveal" data-delay="1">
+          <h3>Hotel</h3>
+          <a class="link-card" href="https://www.hilton.com/en/hotels/bogspqq-salvio-parque-93-bogota/" target="_blank" rel="noopener">
+            <div class="card-info">
+              <div class="card-name">Salvio Parque 93</div>
+              <div class="card-sub">Hilton — Parque 93</div>
+            </div>
+            <span class="card-arrow">↗</span>
+          </a>
+        </div>
+
+        <div class="dest-col reveal" data-delay="2">
+          <h3>Restaurants</h3>
+          <a class="link-card" href="https://osakanikkei.com/bogota/" target="_blank" rel="noopener">
+            <div class="card-info">
+              <div class="card-name">Osaka Nikkei</div>
+              <div class="card-sub">Nikkei Küche</div>
+            </div>
+            <span class="card-arrow">↗</span>
+          </a>
+          <a class="link-card" href="https://www.andrescarnederes.com/" target="_blank" rel="noopener">
+            <div class="card-info">
+              <div class="card-name">Andrés Carne de Res</div>
+              <div class="card-sub">Kolumbianische Klassiker</div>
+            </div>
+            <span class="card-arrow">↗</span>
+          </a>
+        </div>
+
+        <div class="dest-col reveal" data-delay="3">
+          <h3>Sehenswürdigkeiten</h3>
+          <ul class="attr-list">
+            <li>
+              <span class="attr-dot" style="background: var(--bogota);"></span>
+              <span><strong>Monserrate</strong> — Aussichtsberg mit herrlichem Panoramablick über die Stadt</span>
+            </li>
+            <li>
+              <span class="attr-dot" style="background: var(--bogota);"></span>
+              <span><strong>Goldmuseum</strong> — weltberühmte Goldsammlung der Muisca-Kultur</span>
+            </li>
+            <li>
+              <span class="attr-dot" style="background: var(--bogota);"></span>
+              <span><strong>La Candelaria</strong> — historisches Altstadtviertel mit bunten Fassaden</span>
+            </li>
+            <li>
+              <span class="attr-dot" style="background: var(--bogota);"></span>
+              <span><strong>Usaquén</strong> — charmantes Viertel mit Wochenmarkt und Restaurants</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="travel-note reveal" data-delay="4">
+        <strong>Hinweis Tag 3</strong>
+        SUV Richtung Norden fahren. Zipaquirá liegt direkt auf dem Weg nach Villa de Leyva.
+        Stopp in der Salzkathedrale vormittags, dann weiter nach Villa de Leyva zur Ankunft am Abend.
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- ─── 2. Villa de Leyva ──────────────────────────────────── -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="destination alt-bg" id="villa-de-leyva" data-id="villa-de-leyva">
+    <div class="dest-inner">
+      <div class="dest-header reveal">
+        <div class="dest-num">02</div>
+        <div class="dest-title-group">
+          <h2 class="dest-name">
+            <span class="color-bar" style="background: var(--leyva);"></span>
+            Villa de Leyva
+          </h2>
+          <div class="dest-nights-badge">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M6 1a5 5 0 1 0 0 10A5 5 0 0 0 6 1Zm0 2v3l2 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            3 Nächte
+          </div>
+        </div>
+      </div>
+
+      <div class="dest-grid">
+        <div class="dest-col reveal" data-delay="1">
+          <h3>Hotel</h3>
+          <a class="link-card" href="https://www.booking.com/hotel/co/alcestre-villa-de-leyva.de.html" target="_blank" rel="noopener">
+            <div class="card-info">
+              <div class="card-name">Hotel Alcestre</div>
+              <div class="card-sub">Koloniales Boutique-Hotel</div>
+            </div>
+            <span class="card-arrow">↗</span>
+          </a>
+        </div>
+
+        <div class="dest-col reveal" data-delay="2">
+          <h3>Restaurant</h3>
+          <a class="link-card" href="https://www.tripadvisor.com/Restaurant_Review-g676524-d25311242-Reviews-Restaurante_Merce-Villa_de_Leyva_Boyaca_Department.html" target="_blank" rel="noopener">
+            <div class="card-info">
+              <div class="card-name">Restaurante Mercé</div>
+              <div class="card-sub">Lokale Küche</div>
+            </div>
+            <span class="card-arrow">↗</span>
+          </a>
+        </div>
+
+        <div class="dest-col reveal" data-delay="3">
+          <h3>Sehenswürdigkeiten</h3>
+          <ul class="attr-list">
+            <li>
+              <span class="attr-dot" style="background: var(--leyva);"></span>
+              <span><strong>Großer Hauptplatz</strong> — einer der größten gepflasterten Plätze Südamerikas</span>
+            </li>
+            <li>
+              <span class="attr-dot" style="background: var(--leyva);"></span>
+              <span><strong>El Fósil</strong> — Dinosaurierfossilien aus der Kreidezeit</span>
+            </li>
+            <li>
+              <span class="attr-dot" style="background: var(--leyva);"></span>
+              <span><strong>Pozos Azules</strong> — türkisfarbene natürliche Teiche in der Umgebung</span>
+            </li>
+            <li>
+              <span class="attr-dot" style="background: var(--leyva);"></span>
+              <span><strong>Convento del Santo Ecce Homo</strong> — historisches Kloster aus dem 17. Jahrhundert</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- ─── 3. Medellín ────────────────────────────────────────── -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="destination" id="medellin" data-id="medellin">
+    <div class="dest-inner">
+      <div class="dest-header reveal">
+        <div class="dest-num">03</div>
+        <div class="dest-title-group">
+          <h2 class="dest-name">
+            <span class="color-bar" style="background: var(--medellin);"></span>
+            Medellín
+          </h2>
+          <div class="dest-nights-badge">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M6 1a5 5 0 1 0 0 10A5 5 0 0 0 6 1Zm0 2v3l2 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            3 Nächte
+          </div>
+        </div>
+      </div>
+
+      <div class="dest-grid">
+        <div class="dest-col reveal" data-delay="1">
+          <h3>Hotels</h3>
+          <a class="link-card" href="https://www.ihg.com/intercontinental/hotels/us/en/medellin/mdeha/hoteldetail" target="_blank" rel="noopener">
+            <div class="card-info">
+              <div class="card-name">Intercontinental Medellín</div>
+              <div class="card-sub">IHG Hotels</div>
+            </div>
+            <span class="card-arrow">↗</span>
+          </a>
+          <a class="link-card" href="https://heisshotel.com/" target="_blank" rel="noopener">
+            <div class="card-info">
+              <div class="card-name">Heiss Hotel by Jalo</div>
+              <div class="card-sub">Boutique Design Hotel</div>
+            </div>
+            <span class="card-arrow">↗</span>
+          </a>
+        </div>
+
+        <div class="dest-col reveal" data-delay="2">
+          <h3>Restaurants</h3>
+          <a class="link-card" href="https://elcielo.com.co/medellin/" target="_blank" rel="noopener">
+            <div class="card-info">
+              <div class="card-name">El Cielo</div>
+              <div class="card-sub">Michelin-Stern · Fine Dining</div>
+            </div>
+            <span class="card-arrow">↗</span>
+          </a>
+          <a class="link-card" href="https://mondongos.com.co/" target="_blank" rel="noopener">
+            <div class="card-info">
+              <div class="card-name">Mondongos</div>
+              <div class="card-sub">Traditionelle Küche</div>
+            </div>
+            <span class="card-arrow">↗</span>
+          </a>
+          <a class="link-card" href="https://carmenmedellin.com/en/" target="_blank" rel="noopener">
+            <div class="card-info">
+              <div class="card-name">Carmen</div>
+              <div class="card-sub">Moderne kolumbianische Küche</div>
+            </div>
+            <span class="card-arrow">↗</span>
+          </a>
+          <a class="link-card" href="https://relatorestaurante.co" target="_blank" rel="noopener">
+            <div class="card-info">
+              <div class="card-name">Relato</div>
+              <div class="card-sub">Contemporary</div>
+            </div>
+            <span class="card-arrow">↗</span>
+          </a>
+        </div>
+
+        <div class="dest-col reveal" data-delay="3">
+          <h3>Sehenswürdigkeiten</h3>
+          <ul class="attr-list">
+            <li>
+              <span class="attr-dot" style="background: var(--medellin);"></span>
+              <span><strong>Guatapé</strong> — malerisches Dorf mit El Peñón (740 Stufen, atemberaubende Aussicht) — Tagesausflug</span>
+            </li>
+            <li>
+              <span class="attr-dot" style="background: var(--medellin);"></span>
+              <span><strong>Comuna 13</strong> — einst gefährlichstes Viertel, heute weltberühmtes Freilichtmuseum mit Graffiti und Rolltreppen</span>
+            </li>
+            <li>
+              <span class="attr-dot" style="background: var(--medellin);"></span>
+              <span><strong>El Poblado</strong> — modernes Viertel mit Restaurants, Boutiquen und lebhafter Atmosphäre</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- ─── 4. Barichara ───────────────────────────────────────── -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="destination alt-bg" id="barichara" data-id="barichara">
+    <div class="dest-inner">
+      <div class="dest-header reveal">
+        <div class="dest-num">04</div>
+        <div class="dest-title-group">
+          <h2 class="dest-name">
+            <span class="color-bar" style="background: var(--barichara);"></span>
+            Barichara
+          </h2>
+          <div class="dest-nights-badge">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M6 1a5 5 0 1 0 0 10A5 5 0 0 0 6 1Zm0 2v3l2 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            3 Nächte
+          </div>
+        </div>
+      </div>
+
+      <div class="dest-grid">
+        <div class="dest-col reveal" data-delay="1">
+          <h3>Hotels</h3>
+          <a class="link-card" href="https://santasofiabarichara.com/en/" target="_blank" rel="noopener">
+            <div class="card-info">
+              <div class="card-name">Casa Boutique Santa Sofía</div>
+              <div class="card-sub">Boutique Hotel</div>
+            </div>
+            <span class="card-arrow">↗</span>
+          </a>
+          <a class="link-card" href="https://terrazulbarichara.com/" target="_blank" rel="noopener">
+            <div class="card-info">
+              <div class="card-name">Terrazul</div>
+              <div class="card-sub">Boutique Hotel</div>
+            </div>
+            <span class="card-arrow">↗</span>
+          </a>
+        </div>
+
+        <div class="dest-col reveal" data-delay="2">
+          <h3>Restaurants</h3>
+          <a class="link-card" href="https://www.tripadvisor.com/Restaurants-g1178558-Barichara_Santander_Department.html" target="_blank" rel="noopener">
+            <div class="card-info">
+              <div class="card-name">Elvia</div>
+              <div class="card-sub">Lokale Küche</div>
+            </div>
+            <span class="card-arrow">↗</span>
+          </a>
+          <a class="link-card" href="https://www.tripadvisor.com/Restaurants-g1178558-Barichara_Santander_Department.html" target="_blank" rel="noopener">
+            <div class="card-info">
+              <div class="card-name">Las Cruces</div>
+              <div class="card-sub">Kolumbianische Küche</div>
+            </div>
+            <span class="card-arrow">↗</span>
+          </a>
+        </div>
+
+        <div class="dest-col reveal" data-delay="3">
+          <h3>Sehenswürdigkeiten</h3>
+          <ul class="attr-list">
+            <li>
+              <span class="attr-dot" style="background: var(--barichara);"></span>
+              <span><strong>Kopfsteinpflastergassen</strong> — Barichara gilt als schönstes Dorf Kolumbiens</span>
+            </li>
+            <li>
+              <span class="attr-dot" style="background: var(--barichara);"></span>
+              <span><strong>Kathedrale Santa Bárbara</strong> — imposante Kolonialkirche im Herzen des Ortes</span>
+            </li>
+            <li>
+              <span class="attr-dot" style="background: var(--barichara);"></span>
+              <span><strong>Kunsthandwerksläden</strong> — Hängematten, Töpferei und lokale Handwerkskunst</span>
+            </li>
+            <li>
+              <span class="attr-dot" style="background: var(--barichara);"></span>
+              <span><strong>Mirador</strong> — unvergesslicher Sonnenuntergang über dem Chicamocha-Tal</span>
+            </li>
+            <li>
+              <span class="attr-dot" style="background: var(--barichara);"></span>
+              <span><strong>Camino Real nach Guane</strong> — historischer Wanderweg, 9 km, wunderschöne Landschaft, 2–3 Stunden</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- ─── 5. Cartagena ───────────────────────────────────────── -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="destination" id="cartagena" data-id="cartagena">
+    <div class="dest-inner">
+      <div class="dest-header reveal">
+        <div class="dest-num">05</div>
+        <div class="dest-title-group">
+          <h2 class="dest-name">
+            <span class="color-bar" style="background: var(--cartagena);"></span>
+            Cartagena
+          </h2>
+          <div class="dest-nights-badge">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M6 1a5 5 0 1 0 0 10A5 5 0 0 0 6 1Zm0 2v3l2 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            6 Nächte
+          </div>
+        </div>
+      </div>
+
+      <div class="dest-grid">
+        <div class="dest-col reveal" data-delay="1">
+          <h3>Hotels</h3>
+          <a class="link-card" href="https://www.sofitellegendsantaclara.com/" target="_blank" rel="noopener">
+            <div class="card-info">
+              <div class="card-name">Sofitel Legend Santa Clara</div>
+              <div class="card-sub">Historisches Luxushotel · Altstadt</div>
+            </div>
+            <span class="card-arrow">↗</span>
+          </a>
+          <a class="link-card" href="https://www.lasislas.com.co/" target="_blank" rel="noopener">
+            <div class="card-info">
+              <div class="card-name">Hotel Las Islas</div>
+              <div class="card-sub">Isla Barú · Öko-Bungalows · Privatstrand</div>
+            </div>
+            <span class="card-arrow">↗</span>
+          </a>
+        </div>
+
+        <div class="dest-col reveal" data-delay="2">
+          <h3>Restaurants</h3>
+          <a class="link-card" href="https://cartaajenarestaurante.com/" target="_blank" rel="noopener">
+            <div class="card-info">
+              <div class="card-name">Carta Ajena</div>
+              <div class="card-sub">Fine Dining</div>
+            </div>
+            <span class="card-arrow">↗</span>
+          </a>
+          <a class="link-card" href="https://www.buenavidamarisqueria.com/en/home/" target="_blank" rel="noopener">
+            <div class="card-info">
+              <div class="card-name">Buenavida Marisquería</div>
+              <div class="card-sub">Meeresfrüchte</div>
+            </div>
+            <span class="card-arrow">↗</span>
+          </a>
+          <a class="link-card" href="https://www.maryzielo.com/" target="_blank" rel="noopener">
+            <div class="card-info">
+              <div class="card-name">Mar y Zielo</div>
+              <div class="card-sub">Karibische Küche</div>
+            </div>
+            <span class="card-arrow">↗</span>
+          </a>
+          <a class="link-card" href="https://www.restaurantecuzco.com/cartagena" target="_blank" rel="noopener">
+            <div class="card-info">
+              <div class="card-name">Cuzco</div>
+              <div class="card-sub">Peruanisch-karibisch</div>
+            </div>
+            <span class="card-arrow">↗</span>
+          </a>
+        </div>
+
+        <div class="dest-col reveal" data-delay="3">
+          <h3>Sehenswürdigkeiten</h3>
+          <ul class="attr-list">
+            <li>
+              <span class="attr-dot" style="background: var(--cartagena);"></span>
+              <span><strong>Historische Altstadt</strong> — UNESCO-Weltkulturerbe mit farbenprächtigen Balkonen und kolonialen Gassen</span>
+            </li>
+            <li>
+              <span class="attr-dot" style="background: var(--cartagena);"></span>
+              <span><strong>Getsemaní</strong> — lebhaftes Viertel mit Streetart und Nachtleben</span>
+            </li>
+            <li>
+              <span class="attr-dot" style="background: var(--cartagena);"></span>
+              <span><strong>Islas del Rosario</strong> — Bootsausflug ins kristallklare karibische Wasser, Schnorcheln und Entspannen</span>
+            </li>
+            <li>
+              <span class="attr-dot" style="background: var(--cartagena);"></span>
+              <span><strong>Barú</strong> — weiße Sandstrände direkt vor der Haustür</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- ─── 6. Cali ────────────────────────────────────────────── -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="destination alt-bg" id="cali" data-id="cali">
+    <div class="dest-inner">
+      <div class="dest-header reveal">
+        <div class="dest-num">06</div>
+        <div class="dest-title-group">
+          <h2 class="dest-name">
+            <span class="color-bar" style="background: var(--cali);"></span>
+            Cali
+          </h2>
+          <div class="dest-nights-badge">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M6 1a5 5 0 1 0 0 10A5 5 0 0 0 6 1Zm0 2v3l2 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            3 Nächte
+          </div>
+        </div>
+      </div>
+
+      <div class="dest-grid">
+        <div class="dest-col reveal" data-delay="1">
+          <h3>Hotel</h3>
+          <a class="link-card" href="https://www.alkohoteles.com/en/hotel-alko-casa-nispero-hotel-in-cali/" target="_blank" rel="noopener">
+            <div class="card-info">
+              <div class="card-name">Alko Hotel Casa Níspero</div>
+              <div class="card-sub">Boutique Hotel</div>
+            </div>
+            <span class="card-arrow">↗</span>
+          </a>
+        </div>
+
+        <div class="dest-col reveal" data-delay="2">
+          <h3>Restaurants</h3>
+          <a class="link-card" href="https://platillosvoladores.com/" target="_blank" rel="noopener">
+            <div class="card-info">
+              <div class="card-name">Platillos Voladores</div>
+              <div class="card-sub">Moderne kolumbianische Küche</div>
+            </div>
+            <span class="card-arrow">↗</span>
+          </a>
+          <a class="link-card" href="https://floresylechugas.com/" target="_blank" rel="noopener">
+            <div class="card-info">
+              <div class="card-name">Flores y Lechugas</div>
+              <div class="card-sub">Kreative Küche</div>
+            </div>
+            <span class="card-arrow">↗</span>
+          </a>
+        </div>
+
+        <div class="dest-col reveal" data-delay="3">
+          <h3>Sehenswürdigkeiten</h3>
+          <ul class="attr-list">
+            <li>
+              <span class="attr-dot" style="background: var(--cali);"></span>
+              <span><strong>San Antonio</strong> — malerisches Kolonialviertel auf einem Hügel mit Cafés und Aussicht</span>
+            </li>
+            <li>
+              <span class="attr-dot" style="background: var(--cali);"></span>
+              <span><strong>Salsa Shows</strong> — Cali ist die unbestrittene Salsa-Hauptstadt der Welt</span>
+            </li>
+            <li>
+              <span class="attr-dot" style="background: var(--cali);"></span>
+              <span><strong>Zoologischer Garten</strong> — einer der artenreichsten Zoos Südamerikas</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- ─── 7. Salento & Filandia ──────────────────────────────── -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="destination" id="salento" data-id="salento">
+    <div class="dest-inner">
+      <div class="dest-header reveal">
+        <div class="dest-num">07</div>
+        <div class="dest-title-group">
+          <h2 class="dest-name">
+            <span class="color-bar" style="background: var(--salento);"></span>
+            Salento &amp; Filandia
+          </h2>
+          <div class="dest-nights-badge">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M6 1a5 5 0 1 0 0 10A5 5 0 0 0 6 1Zm0 2v3l2 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            4 Nächte
+          </div>
+        </div>
+      </div>
+
+      <div class="dest-grid">
+        <div class="dest-col reveal" data-delay="1">
+          <h3>Unterkunft</h3>
+          <a class="link-card" href="https://www.airbnb.com" target="_blank" rel="noopener">
+            <div class="card-info">
+              <div class="card-name">Airbnb in Salento</div>
+              <div class="card-sub">Lokale Unterkunft</div>
+            </div>
+            <span class="card-arrow">↗</span>
+          </a>
+        </div>
+
+        <div class="dest-col reveal" data-delay="2">
+          <h3>Restaurants</h3>
+          <a class="link-card" href="https://www.tripadvisor.com/Restaurants-g1580963-Salento_Quindio_Department.html" target="_blank" rel="noopener">
+            <div class="card-info">
+              <div class="card-name">Café Bernabé</div>
+              <div class="card-sub">Kaffeespezialitäten</div>
+            </div>
+            <span class="card-arrow">↗</span>
+          </a>
+          <a class="link-card" href="https://www.tripadvisor.com/Restaurants-g1580963-Salento_Quindio_Department.html" target="_blank" rel="noopener">
+            <div class="card-info">
+              <div class="card-name">El Rincón de Lucy</div>
+              <div class="card-sub">Lokale Küche</div>
+            </div>
+            <span class="card-arrow">↗</span>
+          </a>
+        </div>
+
+        <div class="dest-col reveal" data-delay="3">
+          <h3>Sehenswürdigkeiten</h3>
+          <ul class="attr-list">
+            <li>
+              <span class="attr-dot" style="background: var(--salento);"></span>
+              <span><strong>Valle de Cocora</strong> — Wanderung durch Wachspalmen (Nationalbaum Kolumbiens), ein unvergesslicher Anblick</span>
+            </li>
+            <li>
+              <span class="attr-dot" style="background: var(--salento);"></span>
+              <span><strong>Kaffeefarmtour</strong> — traditionelle Kaffeefarm mit Ernte und Verkostung vor Ort</span>
+            </li>
+            <li>
+              <span class="attr-dot" style="background: var(--salento);"></span>
+              <span><strong>Filandia</strong> — farbenfrohes Bergdorf mit Panoramablick über die Kaffeeregion</span>
+            </li>
+            <li>
+              <span class="attr-dot" style="background: var(--salento);"></span>
+              <span><strong>Salento</strong> — gemütliches Kolonialstädtchen mit bunten Fassaden und lokalen Spezialitäten</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="travel-note reveal" data-delay="4">
+        <strong>Rückflug</strong>
+        Rückflug ab Pereira — liegt nur ca. 30 Minuten von Salento entfernt.
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Logistics ──────────────────────────────────────────── -->
+  <section class="logistics">
+    <div class="logistics-inner">
+      <span class="section-label reveal">Reiselogistik</span>
+      <h2 class="reveal" data-delay="1">Transport &amp; Unterkunft</h2>
+
+      <div class="logistics-cards">
+        <div class="logistics-card reveal" data-delay="2">
+          <h3>Mietwagen</h3>
+          <div class="card-main">SUV von Localiza</div>
+          <a href="https://www.localiza.com/colombia/es-co" target="_blank" rel="noopener">
+            localiza.com/colombia
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+              <path d="M2 9L9 2M9 2H4M9 2v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="logistics-card reveal" data-delay="3">
+          <h3>Inlandsflüge</h3>
+          <div class="card-main">Avianca</div>
+          <a href="https://www.avianca.com" target="_blank" rel="noopener">
+            avianca.com
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+              <path d="M2 9L9 2M9 2H4M9 2v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="route-full reveal" data-delay="4">
+        <h3>Vollständige Reiseroute</h3>
+        <p class="route-full-text">
+          <span class="city">Bogotá</span>
+          <span class="via">— SUV —</span>
+          Zipaquirá (Stopp)
+          <span class="via">— SUV —</span>
+          <span class="city">Villa de Leyva</span>
+          <span class="via">— SUV — Bogotá — Flug —</span>
+          <span class="city">Medellín</span>
+          <span class="via">— Flug — Bucaramanga — SUV —</span>
+          <span class="city">Barichara</span>
+          <span class="via">— SUV — Bucaramanga — Flug —</span>
+          <span class="city">Cartagena</span>
+          <span class="via">— Flug —</span>
+          <span class="city">Cali</span>
+          <span class="via">— SUV —</span>
+          <span class="city">Salento &amp; Filandia</span>
+          <span class="via">— Flug ab Pereira</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Footer ─────────────────────────────────────────────── -->
+  <footer>
+    <p>Kolumbien &nbsp;<span>·</span>&nbsp; 24 Nächte &nbsp;<span>·</span>&nbsp; 7 Städte</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
